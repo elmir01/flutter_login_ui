@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_practice1/management/flutter_management.dart';
+import 'package:flutter_practice1/views/home_page.dart';
 import 'package:flutter_practice1/views/login/forgot_password_screen.dart';
 import 'package:flutter_practice1/widgets/custom_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,8 +15,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  // TextEditingController emailController = TextEditingController();
+  // TextEditingController passwordController = TextEditingController();
   var _key = GlobalKey<FormState>();
   bool _passwordVisible = true;
 
@@ -53,7 +55,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   child: Column(
                     children: [
                       TextFormField(
-                        controller: emailController,
+                        controller: ref.watch(loginViewModel).emailController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color.fromRGBO(247, 248, 249, 1),
@@ -77,7 +79,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           }
                         },
                         obscureText: !_passwordVisible,
-                        controller: passwordController,
+                        controller:
+                            ref.watch(loginViewModel).passwordController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                             color: Colors.grey,
@@ -133,7 +136,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (_key.currentState!.validate()) {
-                            print('ok');
+                            ref.read(loginViewModel).loginUser(context);
+                          } else {
+                            print('Xeta');
                           }
                         },
                         child: Text(

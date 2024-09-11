@@ -37,6 +37,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   riverpod: ^2.5.1
   flutter_riverpod: ^2.5.1
+  http: ^1.2.2
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:
